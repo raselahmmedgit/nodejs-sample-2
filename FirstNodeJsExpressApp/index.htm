@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Node Express Angular App</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Latest angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Node Express Angular App
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Node Express Angular App</h3>
+                            <div class="form-body" ng-controller="myCtrl">
+            
+                                <div class="form-group row">
+                                    <div class="col-3">
+                                        <label for="Name" class="control-label">Name: </label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input id="Name" ng-model="Name" class="form-control" data-val="true" data-val-required="Please enter name." id="Name" name="Name" type="text"/>
+                                        <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span ng-bind="Name"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-3">
+                                        <label for="EmailAddress" class="control-label">Email Address: </label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input id="EmailAddress" ng-model="EmailAddress" ng-init="EmailAddress='rasel@placovu.com'" class="form-control" data-val="true" data-val-required="Please enter email address." id="EmailAddress" name="EmailAddress" type="text"/>
+                                        <span class="field-validation-valid" data-valmsg-for="EmailAddress" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span ng-bind="EmailAddress"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="Expression" class="control-label">Expression (5 + 2): </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="Expression">{{ 5 + 2 }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="Expression_2" class="control-label" ng-init="quantity=2;cost=5">Expression (Qty * Cost): </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="Expression_2" ng-bind="quantity * cost"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgObject" class="control-label" ng-init="Person={FirstName:'Rasel',LastName:'Ahmmed'}">Object Int: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgObject">{{ Person.FirstName }} {{ Person.LastName }}</div>
+                                    </div>
+                                </div>
+        
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgArray" class="control-label" ng-init="Points=[1,15,19,2,40]">Array Int: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgArray">{{ Points[1] }} {{ Points[4] }}</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgModule" class="control-label">Module: </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <button id="NgModule" class="btn btn-primary" ng-click="ChangeFullName()">Change Full Name</button>
+                                        <span class="field-validation-valid" data-valmsg-for="NgModule" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-4">
+                                        <span ng-bind="FullName"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgDirective" class="control-label">Directive: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgDirective" my-directive></div>
+                                        <my-directive></my-directive>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgDirectiveRepeat" class="control-label" ng-init="NameList=['Jani','Hege','Kai']">Directive Repeat: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgDirectiveRepeat">
+                                            <span ng-repeat="x in NameList">
+                                                {{ x }} ,
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgController" class="control-label">Controller: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgController">
+                                            <span ng-repeat="x in FullNameList">
+                                                Name: {{ x.Name }}, Country: {{ x.Country }} -
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgFilter" class="control-label">Filter: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgFilter">
+                                            <span ng-repeat="x in FullNameList">
+                                                Name: {{ x.Name | uppercase }}, Country: {{ x.Country }} -
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgFilter" class="control-label">Filter By: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgFilter">
+                                            <span ng-repeat="x in FullNameList | filter : 'i'">
+                                                Name: {{ x.Name }}, Country: {{ x.Country }} -
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-body" ng-controller="myUrlCtrl">
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgLocation" class="control-label">Location: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <div id="NgLocation">{{ MyUrl }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="form-body" ng-controller="myHttpCtrl">
+
+                            </div> -->
+                            <div class="form-body" ng-controller="mySelectCtrl">
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="NgSelect" class="control-label">Select: </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <select id="NgSelect" ng-model="NgSelectedName" ng-options="x for x in names">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021
+        </div>
+    </footer>
+    <script type="application/javascript">
+        var app = angular.module('myApp', []);
+        
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.FullName= "Rasel Ahmmed";
+            $scope.ChangeFullName = function() {
+                $scope.FullName = "John Mia";
+            };
+            $scope.FullNameList = [
+                {Name:'Jani', Country:'Norway'},
+                {Name:'Carl', Country:'Sweden'},
+                {Name:'Margareth', Country:'England'},
+                {Name:'Hege', Country:'Norway'},
+                {Name:'Joe', Country:'Denmark'},
+                {Name:'Gustav', Country:'Sweden'},
+                {Name:'Birgit', Country:'Denmark'},
+                {Name:'Mary', Country:'England'},
+                {Name:'Kai', Country:'Norway'}
+            ];
+        });
+
+        app.controller('myUrlCtrl', function($scope, $location) {
+            $scope.MyUrl = $location.absUrl();
+        });
+
+        // app.controller('myHttpCtrl', function($scope, $http) {
+        //     console.log('myHttpCtrl');
+        //     $http({
+        //         method : "GET",
+        //         url : "/welcome.html"
+        //     }).then(function mySuccess(response) {
+        //         $scope.myWelcome = response.data;
+        //     }, function myError(response) {
+        //         $scope.myWelcome = response.statusText;
+        //     });
+        // });
+
+        app.directive("myDirective", function() {
+            return {
+                template : "I was made in a directive constructor!"
+            };
+        });
+
+        app.controller('mySelectCtrl', function($scope) {
+            $scope.names = ["Emil", "Tobias", "Linus"];
+        });
+
+        // app.config(function($routeProvider) {
+        //     $routeProvider
+        //     .when("/", {
+        //         templateUrl : "welcome.htm"
+        //     })
+        //     .when("/red", {
+        //         templateUrl : "red.htm"
+        //     })
+        //     .when("/green", {
+        //         templateUrl : "green.htm"
+        //     })
+        //     .when("/blue", {
+        //         templateUrl : "blue.htm"
+        //     });
+        // });
+
+    </script>
+</body>
+</html>

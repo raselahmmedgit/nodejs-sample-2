@@ -32,3 +32,6 @@ http.createServer(function (req, res) {
   res.write("<h2>USe nodeemailer.</h2>");
   res.end();
 }).listen(9090);
+
+// Console will print the message
+console.log('Server running at http://localhost:9090/');

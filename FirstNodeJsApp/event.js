@@ -10,3 +10,6 @@ http.createServer(function (req, res) {
     });
   res.end();
 }).listen(9090);
+
+// Console will print the message
+console.log('Server running at http://localhost:9090/');
