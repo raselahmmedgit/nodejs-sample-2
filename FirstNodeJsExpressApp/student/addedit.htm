@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Student App</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Latest angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Student App
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3" ng-controller="myCtrl">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Add Student</h3>
+
+                            <form method="post" action="/student/save" id="formStudent">
+                                <div class="form-body">
+            
+                                    <div class="form-group row">
+                                        <input type="hidden" id="StudentId" name="StudentId" />
+                                        <div class="col-4">
+                                            <label for="StudentName" class="control-label">Student Name: </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input id="StudentName" name="StudentName" type="text" class="form-control" data-val="true" data-val-required="Please enter name."/>
+                                            <span class="field-validation-valid" data-valmsg-for="StudentName" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="col-2">
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="EmailAddress" class="control-label">Email Address: </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input id="EmailAddress" name="EmailAddress" type="text" class="form-control" data-val="true" data-val-required="Please enter email address."/>
+                                            <span class="field-validation-valid" data-valmsg-for="EmailAddress" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="col-2">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="DateOfBirth" class="control-label">Date Of Birth: </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input id="DateOfBirth" name="DateOfBirth" type="text" class="form-control" data-val="true" data-val-required="Please enter date of birth."/>
+                                            <span class="field-validation-valid" data-valmsg-for="DateOfBirth" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="col-2">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-actions form-actions-new">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input type="submit" class="btn btn-primary" value="Submit" />
+                                            <a href="/student" title="Cancel" class="btn btn-danger ml-2">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021
+        </div>
+    </footer>
+    <script type="application/javascript">
+        var app = angular.module('myApp', []);
+        
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.StudentName= "Rasel Ahmmed";
+            $scope.EmailAddress= "raselahmmed@gmail.com";
+            $scope.DateOfBirth= "01-12-1985";
+        });
+
+    </script>
+</body>
+</html>

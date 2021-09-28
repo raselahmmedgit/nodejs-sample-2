@@ -1,23 +1,23 @@
 var express = require('express');
 var app = express();
 
-// This responds with "Hello World" on the homepage
+app.use(express.static('theme'));
+
+// This responds with index.htm on the homepage
 app.get('/', function (req, res) {
    console.log("Got a GET request for the homepage");
-   res.send('Hello GET');
+   res.sendFile( __dirname + "/" + "index.htm" );
 })
 
-// This responds a POST request for the homepage
-app.post('/', function (req, res) {
-   console.log("Got a POST request for the homepage");
-   res.send('Hello POST');
+app.get('/index', function (req, res) {
+   console.log("Got a GET request for the homepage");
+   res.sendFile( __dirname + "/" + "index.htm" );
 })
 
-// This responds a DELETE request for the /delete-student page.
-app.delete('/delete-student', function (req, res) {
-   console.log("Got a DELETE request for /delete-student");
-   res.send('Hello DELETE');
-})
+// app.get('/index.htm', function (req, res) {
+//    console.log("Got a GET request for the index.htm");
+//    res.sendFile( __dirname + "/" + "index.htm" );
+// })
 
 // This responds a GET request for the /student page.
 app.get('/student', function (req, res) {
@@ -25,10 +25,41 @@ app.get('/student', function (req, res) {
    res.send('Page Listing');
 })
 
-// This responds a GET request for abcd, abxcd, ab123cd, and so on
-app.get('/ab*cd', function(req, res) {   
-   console.log("Got a GET request for /ab*cd");
-   res.send('Page Pattern Match');
+// This responds a GET request for the /student add page.
+app.get('/student/add', function (req, res) {
+   console.log("Got a GET request for /student/add");
+   res.sendFile( __dirname + "/student" + "/student/addedit.htm" );
+})
+
+// This responds a GET request for the /student edit page.
+app.get('/student/edit', function (req, res) {
+   console.log("Got a GET request for /student/edit");
+   res.sendFile( __dirname + "/student" + "/student/addedit.htm" );
+})
+
+// This responds a GET request for the /student detail page.
+app.get('/student/detail', function (req, res) {
+   console.log("Got a GET request for /student/detail");
+   res.sendFile( __dirname + "/student" + "/student/detail.htm" );
+})
+
+// This responds a POST request for the /student save page.
+app.post('/student/save', function (req, res) {
+   console.log("Got a POST request for /student/save");
+   // Prepare output in JSON format
+   response = {
+      StudentName:req.query.StudentName,
+      EmailAddress:req.query.EmailAddress,
+      DateOfBirth:req.query.DateOfBirth
+   };
+   console.log(response);
+   res.end(JSON.stringify(response));
+})
+
+// This responds a DELETE request for the /student/delete page.
+app.delete('/student/delete', function (req, res) {
+   console.log("Got a DELETE request for /student/delete");
+   res.send('Hello DELETE');
 })
 
 var server = app.listen(9091, function () {
