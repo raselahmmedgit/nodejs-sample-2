@@ -14,8 +14,11 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Latest angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="myApp">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -30,12 +33,19 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" ng-controller="myCtrl">
+            <div class="row mb-4">
+                <div class="col-10">
+                    <h3>Student</h3>
+                </div>
+                <div class="col-2 text-right">
+                    <a href="/student/add" title="Add" class="btn btn-sm btn-primary">Add</a>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Student App</h3>
                             <table id="tableStudent" class="table table-hover" style="width:100%">
                                 <thead>
                                     <tr>
@@ -54,20 +64,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr ng-repeat="student in Students">
+                                        <td>{{ student.StudentName }}</td>
+                                        <td>{{ student.EmailAddress }}</td>
+                                        <td>{{ student.DateOfBirth }}</td>
                                         <td>
-                                            Rasel Ahmmed
-                                        </td>
-                                        <td>
-                                            raselahmmed@gmail.com
-                                        </td>
-                                        <td>
-                                            01-12-1985
-                                        </td>
-                                        <td>
-                                            <a href="/student/detail" title="Details" class="btn btn-success mr-2">Details</a>
-                                            <a href="/student/edit" title="Edit" class="btn btn-warning mr-2">Edit</a>
-                                            <a href="/student/delete" title="Cancel" class="btn btn-danger">Delete</a>
+                                            <a href="/student/detail/{{ student.StudentId }}" title="Details" class="btn btn-sm btn-success mr-2">Details</a>
+                                            <a href="/student/edit/{{ student.StudentId }}" title="Edit" class="btn btn-sm btn-warning mr-2">Edit</a>
+                                            <a href="/student/delete/{{ student.StudentId }}" title="Cancel" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -83,5 +87,26 @@
             &copy; 2021
         </div>
     </footer>
+    <script type="application/javascript">
+        var app = angular.module('myApp', []);
+        
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.Students = [];
+            
+            $http({
+                method: 'GET',
+                url: 'http://127.0.0.1:9091/getstudents',
+                headers: {'X-Parse-Application-Id':'FirstNodeJsExpressAppId', 'X-Parse-REST-API-Key':'FirstNodeJsExpressAppApiKey'}
+            }).then(function successCallback(response) {
+                    console.log("Succesfully! connected to the API.");
+                    console.log(response.data);
+                    $scope.Students = response.data;
+                }, function errorCallback(response) {
+                    console.log("Error! connecting to the API.");
+                });
+            
+        });
+
+    </script>
 </body>
 </html>

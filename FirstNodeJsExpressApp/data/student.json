@@ -1,0 +1,14 @@
+[
+    {
+      "StudentId": 1,
+      "StudentName": "Rasel Ahmmed",
+      "EmailAddress": "raselahmmed@gmail.com",
+      "DateOfBirth": "1985-12-01T00:00:00"
+    },
+    {
+      "StudentId": 2,
+      "StudentName": "John Mia",
+      "EmailAddress": "johnmia@gmail.com",
+      "DateOfBirth": "1975-09-28T00:00:00"
+    }
+  ]
