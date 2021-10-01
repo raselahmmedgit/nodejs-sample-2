@@ -115,10 +115,31 @@
         </div>
     </footer>
     <script type="application/javascript">
+
+        function getUrlParameter(param, dummyPath) {
+                var currentUrl = dummyPath || window.location.search.substring(1) || window.location.href;
+                var currentUrlArr = currentUrl.split(/[&||?]/);
+                var result;
+
+                for (var i = 0; i < currentUrlArr.length; i += 1) {
+                    var paramName = currentUrlArr[i];
+                    var paramNameSplit = (paramName || '').split('=');
+
+                    if (paramNameSplit[0] === param) {
+                        result = paramNameSplit[1];
+                    }
+                }
+
+                return result;
+        }
+
         var app = angular.module('myApp', []);
         
         app.controller('myCtrl', function($scope, $http) {
             $scope.Student = {};
+
+            // var currentUrlParams = getUrlParameter();
+            // console.log(currentUrlParams);
 
             $http({
                 method: 'GET',
