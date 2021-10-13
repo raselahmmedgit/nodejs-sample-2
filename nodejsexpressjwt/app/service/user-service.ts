@@ -10,27 +10,53 @@ export class UserService {
     }
 
     async CreateUser(user: UserModel) {
-        const result = await this._userRepo.CreateUser(user);
-        return result;
+        try {
+            const result = await this._userRepo.CreateUser(user);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async GetUsers() {
-        const result = await this._userRepo.GetUsers();
-        return result;
+        try {
+            const result = await this._userRepo.GetUsers();
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
+        
     }
 
     async GetUserById(id: number) {
-        const result = await this._userRepo.GetUserById(id);
-        return result;
+        try {
+            const result = await this._userRepo.GetUserById(id);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async UpdateUserById(user: UserModel) {
-        const result = await this._userRepo.UpdateUserById(user);
-        return result;
+        try {
+            const result = await this._userRepo.UpdateUserById(user);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
-    async DeleteUserById(id: number) {
-        const result = await this._userRepo.DeleteUserById(id);
-        return result;
+    async DeleteUserById(id: string) {
+        try {
+            const result = await this._userRepo.DeleteUserById(id);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 }

@@ -96,7 +96,7 @@ export class RoleRepo {
         return result == undefined ? "Unable to update database" : result[1][0];
     }
 
-    async DeleteRoleById(id: number) {
+    async DeleteRoleById(id: string) {
         let result;
         try {
             result = await this.roleContext.update({IsActive: true}, {

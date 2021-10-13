@@ -33,7 +33,9 @@ export const MessageHelper = {
     NullReferenceExceptionError: "There are one or more required fields that are missing.",
     IsEmailExists :  "Email '{0}' already taken. Please choose another email.",
     IsEmailNotExists :  "Email '{0}' is not taken.",
-    DataNotFound :  'Data not found.',
+    DataNotFound: 'Data not found.',
+    TokenExpired: 'Token expired.',
+    UnAuthorized: 'You are not authorized user.',
 }
 
 //let save = MessageHelper.Save,

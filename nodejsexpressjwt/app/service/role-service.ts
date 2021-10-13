@@ -10,27 +10,52 @@ export class RoleService {
     }
 
     async CreateRole(role: RoleModel) {
-        const result = await this._roleRepo.CreateRole(role);
-        return result;
+        try {
+            const result = await this._roleRepo.CreateRole(role);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async GetRoles() {
-        const result = await this._roleRepo.GetRoles();
-        return result;
+        try {
+            const result = await this._roleRepo.GetRoles();
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async GetRoleById(id: number) {
-        const result = await this._roleRepo.GetRoleById(id);
-        return result;
+        try {
+            const result = await this._roleRepo.GetRoleById(id);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async UpdateRoleById(role: RoleModel) {
-        const result = await this._roleRepo.UpdateRoleById(role);
-        return result;
+        try {
+            const result = await this._roleRepo.UpdateRoleById(role);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
-    async DeleteRoleById(id: number) {
-        const result = await this._roleRepo.DeleteRoleById(id);
-        return result;
+    async DeleteRoleById(id: string) {
+        try {
+            const result = await this._roleRepo.DeleteRoleById(id);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 }

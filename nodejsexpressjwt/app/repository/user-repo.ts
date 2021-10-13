@@ -115,7 +115,7 @@ export class UserRepo {
         return result == undefined ? "Unable to update database" : result[1][0];
     }
 
-    async DeleteUserById(id: number) {
+    async DeleteUserById(id: string) {
         let result;
         try {
             result = await this.userContext.update({IsActive: true}, {

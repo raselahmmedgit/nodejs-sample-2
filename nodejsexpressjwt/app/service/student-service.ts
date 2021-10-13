@@ -10,27 +10,52 @@ export class StudentService {
     }
 
     async CreateStudent(student: StudentModel) {
-        const result = await this._studentRepo.CreateStudent(student);
-        return result;
+        try {
+            const result = await this._studentRepo.CreateStudent(student);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async GetStudents() {
-        const result = await this._studentRepo.GetStudents();
-        return result;
+        try {
+            const result = await this._studentRepo.GetStudents();
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async GetStudentById(id: number) {
-        const result = await this._studentRepo.GetStudentById(id);
-        return result;
+        try {
+            const result = await this._studentRepo.GetStudentById(id);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async UpdateStudentById(student: StudentModel) {
-        const result = await this._studentRepo.UpdateStudentById(student);
-        return result;
+        try {
+            const result = await this._studentRepo.UpdateStudentById(student);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 
     async DeleteStudentById(id: number) {
-        const result = await this._studentRepo.DeleteStudentById(id);
-        return result;
+        try {
+            const result = await this._studentRepo.DeleteStudentById(id);
+            return result;
+        }
+        catch (e) {
+            throw new Error(e)
+        }
     }
 }
