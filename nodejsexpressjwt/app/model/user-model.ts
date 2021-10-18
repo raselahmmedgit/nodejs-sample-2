@@ -3,12 +3,12 @@ var uc = require('upper-case');
 export class UserModel {
     Id: string;
     UserName: string;
-    NormalizedUserName: string;
+    NormalizedUserName?: string;
     Email: string;
-    NormalizedEmail: string;
-    EmailConfirmed: boolean;
+    NormalizedEmail?: string;
+    EmailConfirmed?: boolean;
     PasswordHash: string;
-    IsActive: boolean;
+    IsActive?: boolean;
 
     constructor(Id: string, userName: string, email: string, password: string) {
         this.Id = Id;

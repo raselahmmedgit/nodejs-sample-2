@@ -3,8 +3,8 @@ var uc = require('upper-case');
 export class RoleModel {
     Id: string;
     RoleName: string;
-    NormalizedRoleName: string;
-    IsActive: boolean;
+    NormalizedRoleName?: string;
+    IsActive?: boolean;
 
     constructor(id: string, roleName: string) {
         this.Id = id;

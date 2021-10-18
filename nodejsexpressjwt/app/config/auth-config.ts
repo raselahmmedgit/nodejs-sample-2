@@ -1,3 +1,5 @@
 export const AuthConfig = {
-    Secret: "Qwer!234"
+    HashSalt: 10,
+    Secret: "Qwer!234",
+    TokenExpirationInSeconds: 36000
 };

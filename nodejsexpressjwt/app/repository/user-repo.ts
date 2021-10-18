@@ -1,4 +1,4 @@
-import {autoInjectable} from "tsyringe";
+import { autoInjectable } from "tsyringe";
 import {DataTypes, ModelCtor,} from "sequelize";
 import {DbContext} from "./db_context";
 import {UserModel} from "../model/user-model";
@@ -11,7 +11,7 @@ export class UserRepo {
         this.userContext = this.dbContext.Context.define('users', {
             // Model attributes are defined here
             Id: {
-                type: DataTypes.NUMBER,
+                type: DataTypes.STRING,
                 primaryKey: true,
                 autoIncrement: true
             },
@@ -34,7 +34,7 @@ export class UserRepo {
             EmailConfirmed: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true,
-                defaultValue: 0
+                defaultValue: 1
             },
             PasswordHash: {
                 type: DataTypes.STRING,
@@ -43,7 +43,7 @@ export class UserRepo {
             IsActive: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true,
-                defaultValue: 0
+                defaultValue: 1
             }
         }, {
             // Other model options go here
@@ -58,9 +58,13 @@ export class UserRepo {
         let result;
         try {
             result = await this.userContext.create({
+                Id: user.Id,
                 UserName: user.UserName,
+                NormalizedUserName: user.UserName,
                 Email: user.Email,
-                PasswordHash: user.PasswordHash
+                NormalizedEmail: user.Email,
+                PasswordHash: user.PasswordHash,
+                IsActive: true
             });
         } catch (error) {
             console.error('Unable to Create database: ', error);
@@ -68,13 +72,28 @@ export class UserRepo {
         return result;
     }
 
-    async GetUserById(id: number) {
+    async GetUserById(id: string) {
         let result;
         try {
             result = await this.userContext.findOne({
                 where: {
                     id: id,
-                    IsActive: true
+                    isActive: true
+                }
+            });
+        } catch (error) {
+            console.error('Unable to read database:', error);
+        }
+        return result;
+    }
+
+    async GetUserByEmail(email: string) {
+        let result;
+        try {
+            result = await this.userContext.findOne({
+                where: {
+                    email: email,
+                    isActive: true
                 }
             });
         } catch (error) {
@@ -88,7 +107,7 @@ export class UserRepo {
         try {
             result = await this.userContext.findAll({
                 where: {
-                    IsActive: true
+                    isActive: true
                 },
                 limit: 100
             });
@@ -104,7 +123,7 @@ export class UserRepo {
         try {
             result = await this.userContext.update({UserName: user.UserName}, {
                 where: {
-                    Id: user.Id
+                    id: user.Id
                 },
                 limit: 1,
                 returning: true
@@ -120,7 +139,7 @@ export class UserRepo {
         try {
             result = await this.userContext.update({IsActive: true}, {
                 where: {
-                    Id: id
+                    id: id
                 },
                 limit: 1,
                 returning: true

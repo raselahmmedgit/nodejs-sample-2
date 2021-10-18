@@ -1,42 +1,71 @@
-import express from 'express';
-const roleRouter = express.Router();
+import { NextFunction, Request, Response } from "express"
+import { RoleService } from "../../app/service/role-service";
 import "reflect-metadata";
-import {RoleService} from "../../app/service/role-service";
-import {container} from "tsyringe";
-import {RoleModel} from "../../app/model/role-model";
+import { container } from "tsyringe";
+import { RoleModel } from "../../app/model/role-model";
 
-roleRouter.post('/add', async function (req, res) {
-    const service = container.resolve(RoleService);
-    const role:RoleModel = req.body;
-    const result = await service.CreateRole(role);
-    res.json(result);
-});
+class RoleController {
+    constructor() { }
 
-roleRouter.get('/index', async function (req, res) {
-    const service = container.resolve(RoleService);
-    const result = await service.GetRoles();
-    res.json(result);
-});
+    async GetAll(req: Request, res: Response, next: NextFunction) {
+        try {
+            const service = container.resolve(RoleService);
+            const result = await service.GetRoles();
+            res.json(result);
 
-roleRouter.put('/edit', async function (req, res) {
-    const service = container.resolve(RoleService);
-    const role:RoleModel = req.body;
-    const result = await service.UpdateRoleById(role);
-    res.json(result);
-});
+        } catch (e) {
+            next(e)
+        }
+    }
 
-roleRouter.delete('/delete/:id', async function (req, res) {
-    const service = container.resolve(RoleService);
-    const id = Number(req.params.id);
-    const result = await service.DeleteRoleById(id);
-    res.json(result);
-});
+    async GetById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const service = container.resolve(RoleService);
+            const id = String(req.params.id);
+            const result = await service.GetRoleById(id);
+            res.json(result);
 
-roleRouter.get('/get/:id', async function (req, res) {
-    const service = container.resolve(RoleService);
-    const id = Number(req.params.id);
-    const result = await service.GetRoleById(id);
-    res.json(result);
-});
+        } catch (e) {
+            next(e)
+        }
+    }
 
-export default roleRouter;
+    async Add(req: Request, res: Response, next: NextFunction) {
+        try {
+            const service = container.resolve(RoleService);
+            const role: RoleModel = req.body;
+            const result = await service.CreateRole(role);
+            res.json(result);
+
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async Edit(req: Request, res: Response, next: NextFunction) {
+        try {
+            const service = container.resolve(RoleService);
+            const role: RoleModel = req.body;
+            const result = await service.UpdateRoleById(role);
+            res.json(result);
+
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async Delete(req: Request, res: Response, next: NextFunction) {
+        try {
+            const service = container.resolve(RoleService);
+            const id = String(req.params.id);
+            const result = await service.DeleteRoleById(id);
+            res.json(result);
+
+        } catch (e) {
+            next(e)
+        }
+    }
+
+
+}
+export default new RoleController()

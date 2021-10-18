@@ -1,9 +1,11 @@
 export class LoginModel {
-    EmailAddress: string;
+    Email: string;
     Password: string;
+    RoleName?: string;
 
-    constructor(emailAddress: string, password: string) {
-        this.EmailAddress = emailAddress;
+    constructor(email: string, password: string, roleName?: string) {
+        this.Email = email;
         this.Password = password;
+        this.RoleName = roleName;
     }
 }

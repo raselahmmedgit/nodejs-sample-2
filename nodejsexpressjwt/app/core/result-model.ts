@@ -1,49 +1,46 @@
 import {MessageHelper} from "../helper/message-helper";
 
-export class ResultModel {
-    Success: boolean;
-    Error: string;
-    ErrorType: string;
-    ParentId: number;
-    ParentName: string;
-    UploadPath: string;
+class ResultModel {
+    Success?: boolean;
+    Message?: string;
+    MessageType?: string;
+    ParentId?: number;
+    ParentName?: string;
+    UploadPath?: string;
 
-    constructor(success: boolean, error: string, errorType: string) {
-        this.Success = success;
-        this.Error = error;
-        this.ErrorType = errorType;
-    }
+    constructor() { }
     
-    Info(error?: string) {
+    Info(message?: string) {
         return {
             Success: false,
-            Error: error ?? MessageHelper.Info,
-            ErrorType: MessageHelper.MessageTypeInfo
+            Message: message ?? MessageHelper.Info,
+            MessageType: MessageHelper.MessageTypeInfo
         };
     }
 
-    Warning(error?: string) {
+    Warning(message?: string) {
         return {
             Success: false,
-            Error: error ?? MessageHelper.Warning,
-            ErrorType: MessageHelper.MessageTypeWarning
+            Message: message ?? MessageHelper.Warning,
+            MessageType: MessageHelper.MessageTypeWarning
         };
     }
 
-    Fail(error?: string) {
+    Fail(message?: string) {
         return {
             Success: false,
-            Error: error ?? MessageHelper.Error,
-            ErrorType: MessageHelper.MessageTypeDanger
+            Message: message ?? MessageHelper.Error,
+            MessageType: MessageHelper.MessageTypeDanger
         };
     }
 
-    Ok(error?: string) {
+    Ok(message?: string) {
         return {
             Success: true,
-            Error: error ?? MessageHelper.Success,
-            ErrorType: MessageHelper.MessageTypeSuccess
+            Message: message ?? MessageHelper.Success,
+            MessageType: MessageHelper.MessageTypeSuccess
         };
     }
 
 }
+export default new ResultModel()

@@ -1,50 +1,44 @@
 import {autoInjectable} from "tsyringe";
 import {DataTypes, ModelCtor,} from "sequelize";
 import {DbContext} from "./db_context";
-import {RoleModel} from "../model/role-model";
+import {UserRoleModel} from "../model/user-role-model";
 
 @autoInjectable()
-export class RoleRepo {
-    roleContext: ModelCtor<any>;
+export class UserRoleRepo {
+    userRoleContext: ModelCtor<any>;
 
     constructor(private dbContext: DbContext) {
-        this.roleContext = this.dbContext.Context.define('roles', {
+        this.userRoleContext = this.dbContext.Context.define('userroles', {
             // Model attributes are defined here
             Id: {
                 type: DataTypes.STRING,
                 primaryKey: true,
                 autoIncrement: true
             },
-            RoleName: {
+            UserId: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            NormalizedRoleName: {
+            RoleId: {
                 type: DataTypes.STRING,
                 allowNull: false
-            },
-            isActive: {
-                type: DataTypes.BOOLEAN,
-                allowNull: true,
-                defaultValue: 1
             }
         }, {
             // Other model options go here
-            tableName: 'roles',
+            tableName: 'userroles',
             freezeTableName: true,
             timestamps: false,
             paranoid: false
         });
     }
 
-    async CreateRole(role: RoleModel) {
+    async CreateUserRole(userRole: UserRoleModel) {
         let result;
         try {
-            result = await this.roleContext.create({
-                Id: role.Id,
-                RoleName: role.RoleName,
-                NormalizedRoleName: role.RoleName,
-                IsActive: true
+            result = await this.userRoleContext.create({
+                Id: userRole.Id,
+                UserId: userRole.UserId,
+                RoleId: userRole.RoleId,
             });
         } catch (error) {
             console.error('Unable to Create database: ', error);
@@ -52,13 +46,12 @@ export class RoleRepo {
         return result;
     }
 
-    async GetRoleById(id: string) {
+    async GetUserRoleById(id: string) {
         let result;
         try {
-            result = await this.roleContext.findOne({
+            result = await this.userRoleContext.findOne({
                 where: {
-                    id: id,
-                    isActive: true
+                    userId: id
                 }
             });
         } catch (error) {
@@ -67,12 +60,11 @@ export class RoleRepo {
         return result;
     }
 
-    async GetRoles() {
+    async GetUserRoles() {
         let result;
         try {
-            result = await this.roleContext.findAll({
+            result = await this.userRoleContext.findAll({
                 where: {
-                    isActive: true
                 },
                 limit: 100
             });
@@ -83,12 +75,12 @@ export class RoleRepo {
         return result;
     }
 
-    async UpdateRoleById(role: RoleModel) {
+    async UpdateUserRoleById(userRole: UserRoleModel) {
         let result;
         try {
-            result = await this.roleContext.update({RoleName: role.RoleName}, {
+            result = await this.userRoleContext.update({RoleId: userRole.RoleId}, {
                 where: {
-                    id: role.Id
+                    userId: userRole.UserId
                 },
                 limit: 1,
                 returning: true
@@ -99,12 +91,12 @@ export class RoleRepo {
         return result == undefined ? "Unable to update database" : result[1][0];
     }
 
-    async DeleteRoleById(id: string) {
+    async DeleteUserRoleById(id: string) {
         let result;
         try {
-            result = await this.roleContext.update({isActive: true}, {
+            result = await this.userRoleContext.update({isActive: true}, {
                 where: {
-                    id: id
+                    userUserId: id
                 },
                 limit: 1,
                 returning: true

@@ -10,53 +10,32 @@ export class UserService {
     }
 
     async CreateUser(user: UserModel) {
-        try {
-            const result = await this._userRepo.CreateUser(user);
-            return result;
-        }
-        catch (e) {
-            throw new Error(e)
-        }
+        const result = await this._userRepo.CreateUser(user);
+        return result;
     }
 
     async GetUsers() {
-        try {
-            const result = await this._userRepo.GetUsers();
-            return result;
-        }
-        catch (e) {
-            throw new Error(e)
-        }
-        
+        const result = await this._userRepo.GetUsers();
+        return result;
     }
 
-    async GetUserById(id: number) {
-        try {
-            const result = await this._userRepo.GetUserById(id);
-            return result;
-        }
-        catch (e) {
-            throw new Error(e)
-        }
+    async GetUserById(id: string) {
+        const result = await this._userRepo.GetUserById(id);
+        return result;
+    }
+
+    async GetUserByEmail(email: string) {
+        const result = await this._userRepo.GetUserByEmail(email);
+        return result;
     }
 
     async UpdateUserById(user: UserModel) {
-        try {
-            const result = await this._userRepo.UpdateUserById(user);
-            return result;
-        }
-        catch (e) {
-            throw new Error(e)
-        }
+        const result = await this._userRepo.UpdateUserById(user);
+        return result;
     }
 
     async DeleteUserById(id: string) {
-        try {
-            const result = await this._userRepo.DeleteUserById(id);
-            return result;
-        }
-        catch (e) {
-            throw new Error(e)
-        }
+        const result = await this._userRepo.DeleteUserById(id);
+        return result;
     }
 }

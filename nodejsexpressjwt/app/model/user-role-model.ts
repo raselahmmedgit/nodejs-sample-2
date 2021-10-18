@@ -1,8 +1,10 @@
 export class UserRoleModel {
+    Id: string;
     UserId: string;
     RoleId: string;
 
-    constructor(userId: string, roleId: string) {
+    constructor(id: string, userId: string, roleId: string) {
+        this.Id = id;
         this.UserId = userId;
         this.RoleId = roleId;
     }

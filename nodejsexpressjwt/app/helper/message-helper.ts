@@ -31,11 +31,12 @@ export const MessageHelper = {
     UnAuthenticated: "You are not authenticated user.",
     NullError: "Requested object could not found.",
     NullReferenceExceptionError: "There are one or more required fields that are missing.",
-    IsEmailExists :  "Email '{0}' already taken. Please choose another email.",
-    IsEmailNotExists :  "Email '{0}' is not taken.",
+    IsEmailExists :  "Email already taken. Please choose another email.",
+    IsEmailNotExists :  "Email is not taken.",
     DataNotFound: 'Data not found.',
     TokenExpired: 'Token expired.',
     UnAuthorized: 'You are not authorized user.',
+    Logout: 'Logout Successfully.',
 }
 
 //let save = MessageHelper.Save,

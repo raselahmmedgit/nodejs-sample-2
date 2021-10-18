@@ -62,6 +62,7 @@ INSERT INTO `students` (`StudentId`, `StudentName`, `EmailAddress`, `DateOfBirth
 --
 
 CREATE TABLE `userroles` (
+  `Id` varchar(256) NOT NULL,
   `UserId` varchar(256) NOT NULL,
   `RoleId` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
