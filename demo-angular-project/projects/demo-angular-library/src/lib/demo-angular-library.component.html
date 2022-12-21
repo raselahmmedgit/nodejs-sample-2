@@ -1,0 +1,15 @@
+<div>
+  <p>
+    demo-angular-library works!
+  </p>
+  <input [(ngModel)]="userName">
+  <button (click)="addUser()">Add</button>
+  <table>
+    <tr *ngFor="let person of userCollection">
+      <td>{{person?.Name}}</td>
+      <td>
+        <button (click)="deleteUser(person)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
